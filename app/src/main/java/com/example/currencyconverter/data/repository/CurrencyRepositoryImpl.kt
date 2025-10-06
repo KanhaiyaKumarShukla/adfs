@@ -1,5 +1,6 @@
 package com.example.currencyconverter.data.repository
 
+import com.example.currencyconverter.data.local.AppPreferences
 import com.example.currencyconverter.data.local.dao.TransactionDao
 import com.example.currencyconverter.data.local.entity.TransactionEntity
 import com.example.currencyconverter.data.remote.api.ExchangeRateApi
@@ -35,18 +36,26 @@ class CurrencyRepositoryImpl @Inject constructor(
     override suspend fun insertTransaction(transaction: TransactionEntity): Long {
         return transactionDao.insertTransaction(transaction)
     }
+    
+    override suspend fun getTransactionById(id: Long): TransactionEntity? {
+        return transactionDao.getTransactionById(id)
+    }
 
     override fun getAllTransactions(): Flow<List<TransactionEntity>> {
         return transactionDao.getAllTransactions()
     }
 
-    override fun getDeposits(): Flow<List<TransactionEntity>> {
-        return transactionDao.getDeposits()
+    override fun getRecentTransactions(limit: Int): Flow<List<TransactionEntity>> {
+        return transactionDao.getRecentTransactions(limit)
     }
 
-    override fun getWithdrawals(): Flow<List<TransactionEntity>> {
-        return transactionDao.getWithdrawals()
-    }
+//    override fun getTotalDeposits(): Flow<List<TransactionEntity>> {
+//        return transactionDao.getDeposits()
+//    }
+//
+//    override fun getWithdrawals(): Flow<List<TransactionEntity>> {
+//        return transactionDao.getWithdrawals()
+//    }
 
     override fun getTotalDeposits(): Flow<Double?> {
         return transactionDao.getTotalDeposits()

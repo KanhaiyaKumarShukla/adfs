@@ -1,8 +1,8 @@
 package com.example.currencyconverter.di
 
 import android.content.Context
-import com.example.currencyconverter.data.local.AppDatabase
 import com.example.currencyconverter.data.local.AppPreferences
+import com.example.currencyconverter.data.local.database.AppDatabase
 import com.example.currencyconverter.data.remote.api.ExchangeRateApi
 import com.example.currencyconverter.data.repository.CurrencyRepositoryImpl
 import com.example.currencyconverter.domain.repository.CurrencyRepository
